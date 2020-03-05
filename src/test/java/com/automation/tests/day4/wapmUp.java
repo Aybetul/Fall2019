@@ -33,6 +33,7 @@ wikiTest();
 driver.get("http://amazon.com");
 driver.findElement(By.id("twotabsearchtextbox")).sendKeys("java book", Keys.ENTER);
 String title = driver.getTitle();
+
         System.out.println(title.contains("java book")?"Test passed ":"Test failed");
 driver.quit();
     }
@@ -42,11 +43,9 @@ driver.quit();
         WebDriverManager.chromedriver().setup();
         WebDriver driver= new ChromeDriver();
 driver.get("https://en.wikipedia.org/wiki/Main_Page");
-driver.findElement(By.id("searchInput")).sendKeys("Selenium_(software)", Keys.ENTER);
+driver.findElement(By.id("searchInput")).sendKeys("Selenium_(software)", Keys.ENTER); // ENTER and RETUrn does same thing
 String link =driver.getCurrentUrl();
         System.out.println(link.endsWith("Selenium_(software)")?"Test passed":"Test failed");
-
-
         driver.quit();
     }
 
