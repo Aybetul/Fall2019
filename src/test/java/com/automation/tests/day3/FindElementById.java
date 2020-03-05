@@ -21,6 +21,41 @@ public class FindElementById {
         Thread.sleep(3000);
        driver.findElement(By.id("wooden_spoon")).click();
         Thread.sleep(3000);
-      driver.quit();
+        String expected = "Welcome to the Secure Area. When you are done click logout below.";
+        String actual = driver.findElement((By.tagName("h4"))).getText();
+//        if(expected.equals(actual)){
+//            System.out.println("Test passed");
+//        }else{
+//            System.out.println("Test failed");
+//        }
+        System.out.println(expected.equals(actual)?"passed":"failed");
+
+        // let's click on the logiut button. it looks like button but it is hyper link
+        //if you have couple space in the text we can use partialLinkText
+        WebElement logout = driver.findElement(By.linkText("Logout"));
+        String href= logout.getAttribute("href");
+        String className= logout.getAttribute("class");
+        System.out.println(href);
+        System.out.println(className);
+        Thread.sleep(3000);
+        logout.click();
+        // let's enter invalid credentials
+        driver.findElement(By.name("username")).sendKeys("wrong");
+        driver.findElement(By.name("password")).sendKeys("wrong");
+        driver.findElement(By.id("wooden_spoon")).click();
+        Thread.sleep(3000);
+
+        WebElement errorMessage =driver.findElement(By.id("flash-messages"));
+        System.out.println(errorMessage.getText());
+        Thread.sleep(3000);
+
+
+
+
+
+
+
+        driver.quit();
     }
+
 }
