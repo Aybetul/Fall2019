@@ -16,7 +16,7 @@ public class CheckBoxesTest {
     }
     // verify that your first box is not selected and second is selected
     public static  void checkBox(){
-        WebDriver driver= DriverFactory.createADriver("chrome");
+        WebDriver driver= DriverFactory.createDriver("chrome");
       driver.get("http://practice.cybertekschool.com/checkboxes");
         List<WebElement> checkBox= driver.findElements(By.tagName("input"));
         BrowserUtils.wait(2);

@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 public class RadioButtonTest {
     public static void main(String[] args) {
-        WebDriver driver = DriverFactory.createADriver("chrome");
+        WebDriver driver = DriverFactory.createDriver("chrome");
         driver.get("http://practice.cybertekschool.com/radio_buttons");
         BrowserUtils.wait(2);
         WebElement blackButton = driver.findElement(By.id("black"));

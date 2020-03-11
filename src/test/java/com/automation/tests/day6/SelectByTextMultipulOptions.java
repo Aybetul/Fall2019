@@ -11,7 +11,7 @@ import java.util.List;
 
 public class SelectByTextMultipulOptions {
     public static void main(String[] args) {
-      WebDriver driver= DriverFactory.createADriver("chrome");
+      WebDriver driver= DriverFactory.createDriver("chrome");
         driver.get("http://practice.cybertekschool.com/dropdown");
         BrowserUtils.wait(2);
         Select languagesSelect= new Select(driver.findElement(By.name("Languages")));

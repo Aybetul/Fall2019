@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 public class iFrame {
     public static void main(String[] args) {
-        WebDriver driver= DriverFactory.createADriver("chrome") ;
+        WebDriver driver= DriverFactory.createDriver("chrome") ;
         driver.get("http://practice.cybertekschool.com/iframe");
         BrowserUtils.wait(2);
         driver.switchTo().frame("mce_0_ifr");

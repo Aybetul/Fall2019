@@ -9,7 +9,7 @@ import java.util.List;
 
 public class VerifyThatElementGone {
     public static void main(String[] args)throws  Exception {
-      WebDriver driver=  DriverFactory.createADriver("chrome");
+      WebDriver driver=  DriverFactory.createDriver("chrome");
      driver.get("http://practice.cybertekschool.com/multiple_buttons");
 Thread.sleep(2000);
 driver.findElement(By.id("disappearing_button")).click();

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Alert {
     public static void main(String[] args) {
-    WebDriver driver= DriverFactory.createADriver("chrome");
+    WebDriver driver= DriverFactory.createDriver("chrome");
     driver.get("http://practice.cybertekschool.com/javascript_alerts");
         BrowserUtils.wait(2);
     List<WebElement> alerts= driver.findElements(By.tagName("button"));

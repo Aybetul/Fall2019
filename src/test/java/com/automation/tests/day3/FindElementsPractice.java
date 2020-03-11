@@ -13,7 +13,7 @@ public class FindElementsPractice {
 //        WebDriverManager.chromedriver().setup();
 //        WebDriver driver =new ChromeDriver();
         // we create  a method to create DRIVER
-        WebDriver driver = DriverFactory.createADriver("chrome");
+        WebDriver driver = DriverFactory.createDriver("chrome");
         driver.get("http://practice.cybertekschool.com/sign_up");
         Thread.sleep(3000);
         WebElement fullName=driver.findElement(By.name("full_name"));

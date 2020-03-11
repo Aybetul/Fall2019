@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FindElementsTest {
     public static void main(String[] args) throws  Exception {
-     WebDriver driver=  DriverFactory.createADriver("chrome");
+     WebDriver driver=  DriverFactory.createDriver("chrome");
         driver.get("http://practice.cybertekschool.com/");
         Thread.sleep(3000);
        // This is how to collect from the page

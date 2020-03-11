@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 public class FindElementById {
     public static void main(String[] args) throws  Exception{
-      WebDriver driver=  DriverFactory.createADriver("chrome");
+      WebDriver driver=  DriverFactory.createDriver("chrome");
       driver.get("http://practice.cybertekschool.com/login");
       // log way
 //        WebElement login= driver.findElement(By.name("username"));

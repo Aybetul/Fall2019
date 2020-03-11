@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class DriverFactory {
 
 
-   public static WebDriver createADriver(String browserName){
+   public static WebDriver createDriver(String browserName){
        if(browserName.equalsIgnoreCase("chrome")){
            WebDriverManager.chromedriver().version("79.0").setup();
            return new ChromeDriver();
