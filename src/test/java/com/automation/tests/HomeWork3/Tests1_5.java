@@ -1,4 +1,4 @@
-package com.automation.tests.SelfPractice;
+package com.automation.tests.HomeWork3;
 
 import com.automation.utulities.BrowserUtils;
 import com.automation.utulities.DriverFactory;
@@ -57,9 +57,6 @@ public class Tests1_5 {
 
         Assert.assertEquals(actual, expected);
     }
-
-
-
 
     @BeforeMethod
     public void SetUp(){

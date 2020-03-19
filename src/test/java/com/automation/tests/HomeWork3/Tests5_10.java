@@ -1,4 +1,4 @@
-package com.automation.tests.SelfPractice;
+package com.automation.tests.HomeWork3;
 
 import com.automation.utulities.BrowserUtils;
 import com.automation.utulities.DriverFactory;
@@ -12,21 +12,19 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 
-public class Tests5_10 {
+
+    public class Tests5_10 {
     private WebDriver driver;
-private By emailBy= By.id("email");
-private By pageBy= By.linkText("Sign Up For Mailing List");
-private By fullnameBy=By.cssSelector("[name='full_name']");
-private By emailBy2= By.cssSelector("[type='email']");
-private By summitBy= By.name("wooden_spoon");
-private By messBy=By.name("signup_message");
-private By emailMessBy=By.xpath("//*[@id='schranka']/tr[1]/td[1]");
-private By emailFromBy= By.id("odesilatel");
-private By messFromBy= By.id("predmet");
+    private By emailBy= By.id("email");
+    private By pageBy= By.linkText("Sign Up For Mailing List");
+    private By fullnameBy=By.cssSelector("[name='full_name']");
+    private By emailBy2= By.cssSelector("[type='email']");
+     private By summitBy= By.name("wooden_spoon");
+    private By messBy=By.name("signup_message");
+    private By emailMessBy=By.xpath("//*[@id='schranka']/tr[1]/td[1]");
+    private By emailFromBy= By.id("odesilatel");
+    private By messFromBy= By.id("predmet");
 
 //test case 7
     private By uploadBy= By.linkText("File Upload");
@@ -38,18 +36,18 @@ private By messFromBy= By.id("predmet");
     private By autoBoxBy=By.id("myCountry");
      private By resultBy= By.id("result");
 
-// Test Case 9
+    // Test Case 9
     private By StatusBy= By.linkText("Status Codes");
 
 
-@Test(description = "Message Verification", dataProvider ="testData" )
+   @Test(description = "Message Verification", dataProvider ="testData" )
     public void TestCase9_12(String clickOn, String expected){
     driver.findElement(StatusBy).click();
         driver.findElement(By.linkText(clickOn)).click();
         String actual =   driver.findElement(By.tagName("p")).getText();
          Assert.assertTrue(actual.contains(expected));
     }
-@DataProvider(name = "testData")
+   @DataProvider(name = "testData")
     public Object[][] testData(){
         return new Object[][]{{"200", "This page returned a 200 status code"},
                               {"301","This page returned a 301 status code"},
@@ -62,8 +60,8 @@ private By messFromBy= By.id("predmet");
 
 
 
-@Test(description = "Verify that following message is displayed: You selected: United States of America”")
-public void TestCase8(){
+    @Test(description = "Verify that following message is displayed: You selected: United States of America”")
+      public void TestCase8(){
         driver.findElement(autoBy).click();
         driver.findElement(autoBoxBy).sendKeys("United States of America");
         driver.findElement(By.cssSelector("[value='Submit']")).click();
@@ -78,7 +76,7 @@ public void TestCase8(){
 
 
 
-   @Test
+   @Test(description = "upload the file")
    public void TestCase7(){
     driver.findElement(uploadBy).click();
     String filePath= System.getProperty("user.dir")+"/pom.xml";
@@ -87,15 +85,10 @@ public void TestCase8(){
 }
 
 
-    @BeforeMethod
-    public void setup(){
-        driver= DriverFactory.createDriver("chrome");
-        driver.get("https://practice-cybertekschool.herokuapp.com/");
-        driver.manage().window().maximize();
-    }
 
- @Test(description = "Sign up for Mailing List")
-public void TestCase6(){
+
+    @Test(description = "Sign up for Mailing List")
+    public void TestCase6(){
     driver.get("https://www.tempmailaddress.com/");
     String email= driver.findElement(emailBy).getText();
      System.out.println(email);
@@ -130,7 +123,12 @@ public void TestCase6(){
      Assert.assertEquals(actualSubject,expectedSubject);
  }
 
-
+    @BeforeMethod
+    public void setup(){
+        driver= DriverFactory.createDriver("chrome");
+        driver.get("https://practice-cybertekschool.herokuapp.com/");
+        driver.manage().window().maximize();
+    }
 
 
 
