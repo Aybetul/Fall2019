@@ -1,0 +1,38 @@
+Locators
+
+<button class="btn btn-primary" onclick="button1()" text ='button'>Button 1</button>
+<a href ='www.google.com'> </a>
+(red) <button>  --> tags
+
+(Orange) class, onclick, value  --> attributes
+
+(Green) "btn btn-primary", "button1()" --> value
+
+(Grey) Button 1 ---> Text
+
+Example:
+<div id="page-footer" class="row">
+
+  Tags --> <div>
+    Attributes --> id, class
+    Values --> "page-footer", "row"
+
+  ****  attribute = "value" ****
+
+Most cases a locator will require to be unique.
+
+Text is between the 'opening' and 'closing' tag
+
+8 Locators:
+ 1. id  (attribute)
+ 2. tagName (tag)
+ 3. className (class)(attribute)
+ 4. name
+ 5. linkText
+ 6. partialLinkText
+ 7. Xpath
+ 8. cssSelector
+
+ Which one to choose?
+ 1. id
+ 2. cssSelector
