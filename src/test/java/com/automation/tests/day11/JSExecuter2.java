@@ -31,7 +31,7 @@ String expectedTitle="Practice";
 }
 public void clickOn(){
 WebElement link= driver.findElement(By.linkText("Multi Buttons"));
-link.click();
+//link.click();
 JavascriptExecutor js= (JavascriptExecutor) driver;
 js.executeScript("argument[0].click()", link);
 
