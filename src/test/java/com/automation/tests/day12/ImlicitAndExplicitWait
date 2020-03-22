@@ -39,3 +39,13 @@ Explicit wait - as many times as we need.
 If condition failed, webdriver throws exception.
 org.openqa.selenium.TimeoutException: Expected condition failed: waiting for title to contain “Amazon”. Current title: “Google” (tried for 10 second(s) with 500 milliseconds interval)
 When condition fails, it throws TimeoutException.
+
+
+
+OVERLAY SCREEN
+
+//overlay screen ==> div element goes on top of page we have this page this screen, it will show up but not immediately there is a gap
+//selenium starts manipulating once load done, but there is a gap=> between loading complete - overlay screen pop up
+//submit button condition not helpful cause it becomes true even before overlay appears
+//so we put condition:
+wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loadingoverlay")));
