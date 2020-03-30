@@ -1,4 +1,4 @@
-package login;
+package com.automation.tests.Vytrack.login;
 
 import com.automation.utulities.BrowserUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;

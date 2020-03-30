@@ -1,4 +1,4 @@
-package com.automation.tests.Vytrack.Activities;
+package com.automation.tests.Vytrack.Activity;
 
 
 import com.automation.utulities.BrowserUtils;

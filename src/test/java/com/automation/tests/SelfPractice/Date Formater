@@ -1,0 +1,8 @@
+
+
+
+
+     LocalDate ld=LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MMMM-dd");
+    String actual= currentYear+"-"+currentMonth+"-"+currentDay;
+      Assert.assertEquals(actual,formatter.format(ld));

@@ -15,6 +15,8 @@ For example:
 driver.manage().timeouts().implicitlyWait(20, TimeUnits.SECONDS);
 That means webdriver, will be waiting for any element up to 20 seconds.
 #RECOMENDATION: don’t use implicit and explicit waits together. You might get unexpectedly long waits.
+
+
 Explicit wait - provides better way to wait over implicit wait. Unlike implicit wait, you can write and use pre-defined conditions or custom conditions before proceeding further.
 Explicit wait - exact condition and exact element. Implicit wait - only one condition (presence of element in the DOM) and it applies for every findElement() method invocation.
 How to implement Explicit wait?
@@ -49,3 +51,15 @@ OVERLAY SCREEN
 //submit button condition not helpful cause it becomes true even before overlay appears
 //so we put condition:
 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loadingoverlay")));
+
+
+Summary
+Synchronization - one of the biggest issues in selenium webdriver. To resolve wait issues, we have:
+    Thread.sleep()
+    implicit wait
+    explicit wait
+    fluent wait
+Thread.sleep() - to pause java program, not coming from selenium, it's a java feature
+implicit wait - wait for element to be present in DOM. Apply only once, works before findElement() automatically
+explicit wait - wait for specific element based on specific condition withing specific time.
+fluent wait - like explicit wait, but also allows to change polling time.
