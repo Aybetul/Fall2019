@@ -26,7 +26,7 @@ public void verifyPageTitle(){
             LoginPage loginpage=new LoginPage();
             loginpage.login("user", "123");
             Assert.assertEquals( loginpage.getWarningText(),"Invalid user name or password.");
-             BrowserUtils.getScreenShot("loginPage");
+             BrowserUtils.getScreenshot("warning message");
 
          }
 
