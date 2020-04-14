@@ -1,0 +1,2 @@
+[0327/111235.840:ERROR:prune_crash_reports.cc(35)] PruneCrashReportDatabase: Failed to get pending reports
+[0411/204016.795:ERROR:prune_crash_reports.cc(35)] PruneCrashReportDatabase: Failed to get pending reports
