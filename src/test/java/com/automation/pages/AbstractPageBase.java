@@ -20,6 +20,7 @@ public abstract class AbstractPageBase {
     protected WebDriver driver= Driver.getDriver();
     protected WebDriverWait wait=new WebDriverWait(driver,15);
 
+
     @FindBy(css="#user-menu > a")
     protected WebElement currentUser;
 
