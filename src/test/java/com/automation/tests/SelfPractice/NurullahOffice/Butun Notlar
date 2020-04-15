@@ -1,0 +1,284 @@
+Locators
+<button class="btn btn-primary" onclick="button1()" text ='button'>Button 1</button>
+<a href ='www.google.com'> </a>
+(red) <button>  --> tags
+(Orange) class, onclick, value  --> attributes
+(Green) "btn btn-primary", "button1()" --> value
+(Grey) Button 1 ---> Text
+Example:
+<div id="page-footer" class="row">
+  Tags --> <div>
+    Attributes --> id, class
+    Values --> "page-footer", "row"
+  ****  attribute = "value" ****
+Most cases a locator will require to be unique.
+Text is between the 'opening' and 'closing' tag
+8 Locators:
+ 1. id  (attribute)
+ 2. tagName (tag)
+ 3. className (class)(attribute)
+ 4. name
+ 5. linkText
+ 6. partialLinkText
+ 7. Xpath
+ 8. cssSelector
+ Which one to choose?
+ 1. id
+ 2. cssSelector
+ 3. Xpath
+ LinkText {
+   <a href="www.google.com">Autocomplete</a>
+   Tag --> <a>
+     Attribute --> href
+     Value -->"/autocomplete"
+     Text --> Autocomplete
+     <a></a> --> This is the tag for link
+     href --> url, endpoint for navigation
+     For linkText we have to use the whole text --> "Autocomplete"
+
+ }
+ partialLinkText {
+   <a href="www.google.com">Autocomplete</a>
+   We only need a portion of the text
+   Portion of text --> "Auto"
+   <a href="/javascript_error">JavaScript onload event error</a>
+   linkText --> "JavaScript onload event error"
+   partialLinkText --> "onload"
+   partialLinkText --> "JavaScript"
+   partialLinkText --> "event"
+ }
+ className  vs name {
+   <button class="btn btn-primary" onclick="button2()"
+           name="button2">Button 2</button>
+           Tag --> button
+           Attributes --> class, onclick, name
+           Value --> "button2", "button2()", "btn btn-primary"
+           className Locator will find element with --> class attribute
+           name locator will find the element with --> name attribute
+ }
+ Xpath {
+   1. Absolute Xpath (this is not recommend)
+    begin with single slash
+        /
+        Found the first button with absolute Xpath
+        /html/body/div/div[2]/div/div[1]/button[1]
+
+   2. Relative Xpath
+      begins with double slash
+      //
+      Start a designated tag
+      //tagName[@attribute='value']
+      <button class="btn btn-primary" onclick="button2()"
+              name="button2">Button 2</button>
+        //button[@name='button2']
+        //button[@class='btn btn-primary']
+        //button[@onclick='button2()']
+        *Dynamic(changing) Elements*
+        1. Any tag
+          tagName will be replaced with a *
+          //*[@attribute='value']
+
+        2. Operator 'and'
+           combine two different attributes to find a single Elements
+           First Way
+           //tagName[@attribute='value' and @attribute2 ='value2']
+           Second Way
+           //tagName[@attribute='value'][@attribute2='value2']
+           <button class="btn btn-primary" onclick="button2()"
+                   name="button2_wuqyei">Button 2</button>
+          //button[@class='btn btn-primary' and @onclick='button2()']
+          //button[@class='btn btn-primary'][@onclick='button2()']
+          3. Operator 'or'
+          //button[@class='btn btn-primary' or @onclick='button2()']
+          4. Attribute 'starts-with'
+          //tagName[starts-with(@attribute,'value')]
+            value-> Could be partial value or beginning of a value
+            <button class="btn btn-primary"
+            onclick="button3()" id="button_b1">Button 3</button>
+            //button[starts-with(@id,'button_')]
+            //button(starts-with(text(),'Button'))
+
+          5. Attribute 'ends-with'
+          //tagName[ends-with(@attribute,'value')]
+          //button[ends-with(text(),'3')]
+          6. Attribute 'contains'
+          //tagName[contains(@attribute,'value')]
+          //tagName[contains(text(),'TEXT')]
+          7. Any attribute
+           attribute is replace with *
+           //tagName[@*='value']
+
+
+
+TestNG and JUnit (tools)--> shortcut
+  Begun with unit testing approach
+Easily test in a framework which integrates perfectly with Selenium
+(TestNG) Advantages
+1. Annotations to use and understand when building test scripts
+2. Test cases can be grouped. (We usually group by class)
+3. Generate Reports
+(The reporting for TESTNG, instead we use a different tool)
+4. Parallel testing
+5. Simple verifications (Assert class)
+@Annotations
+Are actually instructions for our JVM.
+Carry information and some procedure for how a test should instructions
+@Test
+The method below is a test case
+(This way we can run the test case, make it runnable)
+@BeforeMethod, @AfterMethod (Scope is locked inside a class unless inherited)
+Before or After every test case run the following code
+@BeforeTest, @AfterTest(Require knowledge of testNG xml testing)
+@BeforeClass, @AfterClass
+Before or After every class run the following code
+@BeforeGroup, @AfterGroup
+Before or After every group run the following code
+@BeforeSuite, @AfterSuite(Require knowledge of testNG xml testing)
+Clarification:
+@BeforeMethod vs @BeforeGroup
+          @Test (group = "Test Group 1")
+          public void test1(){
+             sout("Hello")
+          }
+          @Test (group = "Test Group 1")
+          public void test2(){
+            sout("World")
+          }
+          @BeforeMethod
+          public void setUp(){
+            sout("Test 1")
+          }
+          @BeforeGroup
+          public void groupSetUp(){
+             sout(" Testing Group 1")
+          }
+          Console output @BeforeMethod output:
+           Test 1
+          (test1) Hello
+           Test 1
+          (test2) World
+           Console output with @BeforeGroup :
+           Testing Group 1
+           Test 1
+          (test1) Hello
+           Test 1
+          (test2) World
+  Annotation Parameters:
+      (description ="Detail about your test ",
+      priority = 0, order of cases , lower # comes first,
+      dataProvider ="exact name of your data provider")
+
+  DataProvider:
+   returns data in form of single dimensional Object array (Object [])
+   or 2 dimensional object array (Object [] [])
+        Object [] --> When you have only 1 parameter
+        Object [] [] --> When you have 2+ parameters
+     */
+
+JavaScriptExecutor
+    Add-on to Selenium
+    We use when the selenium doesn't react well with the web page
+    Alternative way to interact with the browser
+  JavaScriptExecutor is an INTERFACE for the Driver
+  (An example of polymorphism for the driver)
+  1. SendKeys
+      document.getElementById('element id').value='Send these characters'
+        document.getElementByName('element id').value='Send these characters'
+  2. click a button click()
+       document.getElementById('element id').click();
+  3. Get the title of the page
+      document.title
+  4. Get the URL of the page
+     document.URL
+  5. getText()
+     document.getElementById('element id').innerHTML;
+  6. Scroll down & scroll to view an element (Scroll into view of an element)
+     (Scroll Down) window.scrollBy(0,500)
+      (Scroll an element into view) document.getElementById('element id').scrollIntoView();
+      (Scroll to the bottom of the page)
+Exercise Project {
+                 We will create a calculator
+                    Two functions
+                        1. Add
+                        2. Subtract  --> JIRA ticket number:  CALC-1212
+        }
+TERMINAL & GITBASH commands {
+       a. cd
+             To navigate to a directory in terminal :
+                ' cd <directoryName> '
+             Example to navigate to desktop from user:  'cd Desktop'
+       b. ls
+          Show all files and folders inside the directory(folder) that are visible
+          ls -a
+          Show all files including hidden ones in the directory
+}
+Git {
+              'origin' keyword in git is referring to remote repository (Github, BitBucket)
+               Example usage --> git push origin <remoteLocation> or <branchName>
+                  Which pushes to the indicated location or indicated branch.
+   Adding files to stage in git
+    {
+      git add <FileName>
+        - Add the indicated file into the stage
+
+      git add .
+        - Add ALL files into the stage
+    }
+      How to MERGE in git examples:
+
+     Example 1.  Merging into master
+
+            First WAy: To merge a branch into master: (Adding new code into master)
+                Step 1: Make sure youre on master  branch
+                Step 2: Write the following :   git merge <BranchName>
+                **This will merge <branchName> into master (master is changing)
+            Second Way:  To merge a branch into master: (Adding new code into master)
+                Step 1: Make sure youre on <branchName>  branch
+                Step 2: Write the following :   git rebase master
+                **This will merge <branchName> into master  (master is changing)
+      Example 2. Merging master into another branch
+           To merge master into a different branch : (Getting code from master)
+              Step 1: Make sure youre on the <branchName>
+              Step: Write the following : git merge master
+              **This will merger master into <branchName>  (<branchName> is changing)
+
+}
+TestNG XML Runner
+Two Problem:
+       1. We want to run more than 1 method in a className
+          Solution --> We used testNG annotations (@Test)
+       2. We want to be able to run more than 1 class at the same time
+          Solution --> TestNG Xml
+     testNG XMl Runner {
+            --> It can run several classes in a sequencial order -->
+            One place to run all test that you want to
+           -->  We can also do parallel  testing --> Running 2 or more test at the SAME time
+           How to create an XML runner {
+              Step 1 . We create a file with an xml extension
+                        (Optional) within the project folder
+                        <fileName>.xml
+              Step 2. Define DocType and connect to testNG
+                    <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+              Step 3. Create suite
+                     <suite></suite>
+           }
+           XML is a file type (similar to HTML standards)
+Data Drive Testing (DDT)
+   --> Not hard coding the variables into the code
+       Example : You do not store login credentials into your test script
+   ** A best practice in testing is to separate test data from test script
+   1000 credentials we have to test:
+    {Less Favorable} Way 1: Form a variable and constantly change the variable and run the test
+    {Less Favorable} Way 2: Creating 1000 test classes
+    {More Favorable} Way 3: Separate Test data and call into the test script:
+          1. Data provider ---> one test case being fed all the different credentials in a
+                                sequencial order
+          2. Excel File --> one test case being fed all the data
+          3. CSV --> one test case being fed all the data
+          3. Database  --> one test case being fed all the data
+          4. Cloud Storage --> one test case being fed all the data
+
+  Excel Connection is done by a third-party add-on --> Apache
+  (DO NOT RE-INVENT THE WHEEL)(PICK FROM A RELIABLE SOURCE)
+      To make the excel connection without reinventing the wheel
+      we will import the apache excel library

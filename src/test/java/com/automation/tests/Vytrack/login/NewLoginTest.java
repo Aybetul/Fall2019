@@ -14,6 +14,8 @@ import org.testng.annotations.Test;
 
 public class NewLoginTest extends AbstractTestBase {
 
+    static int  row =1;
+
 // TO SEE THE REPORT -> TEST OUTPUT ->SHOW IN EXPLORER
     @Test
 public void verifyPageTitle(){

@@ -8,6 +8,7 @@ import com.automation.utulities.BrowserUtils;
 import com.automation.utulities.DateTimeUtilities;
 import com.automation.utulities.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -33,14 +34,15 @@ public class NewCalenderEventTests extends AbstractTestBase {
      */
     @Test
     public void TestCase1() {
+        test = report.createTest("view edit delete buttons " );
+
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
         BrowserUtils.wait(10);
-        List<String> lst = calendarEventsPage.getDotsValue();
-        System.out.println(lst);
-        Assert.assertTrue(lst.get(0).equals("View") && lst.get(1).equals("Edit") && lst.get(2).equals("Delete"));
-
-
+        for (WebElement s : calendarEventsPage.getDotsList()) {
+            Assert.assertTrue(s.isDisplayed());
+            test.pass("Test passed");
+        }
     }
 
     /**
@@ -52,7 +54,7 @@ public class NewCalenderEventTests extends AbstractTestBase {
      * 6. Verify that “Title” column still displayed
      */
     @Test
-    public void TestCase2() { // passed
+    public void TestCase2() {
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
         calendarEventsPage.clickOnGridSetting();
@@ -80,7 +82,7 @@ public class NewCalenderEventTests extends AbstractTestBase {
         BrowserUtils.wait(10);
 
         calendarEventsPage.clickSaveAndCloseArrow();
-        BrowserUtils.wait(20);
+        BrowserUtils.wait(10);
         List<String> expected = Arrays.asList("Save And Close", "Save And New", "Save");
         List<String> actual = calendarEventsPage.getSaveAndCloseText();
         Assert.assertEquals(actual, expected);
@@ -96,7 +98,7 @@ public class NewCalenderEventTests extends AbstractTestBase {
      * displayed
      */
     @Test
-    public void TestCase4() { // passed
+    public void TestCase4() {
         test = report.createTest("verify Title Displayed");
         loginPage.login();
         calendarEventsPage.navigateToCalendarEvents();
@@ -127,7 +129,10 @@ public class NewCalenderEventTests extends AbstractTestBase {
         BrowserUtils.wait(10);
         calendarEventsPage.clickToCreateCalendarEvent2();
         BrowserUtils.wait(10);
-        calendarEventsPage.selectValueForStartTime();
+        actions.moveToElement(calendarEventsPage.getStartTime()).clickAndHold().perform();
+        BrowserUtils.wait(5);
+        calendarEventsPage.clickTimePM("9");
+
         Assert.assertEquals(calendarEventsPage.getEndTime(), "10:00 PM");
 
     }
@@ -146,7 +151,7 @@ public class NewCalenderEventTests extends AbstractTestBase {
      */
 
     @Test
-    public void TestCase7() { // passed
+    public void TestCase7() {
         test = report.createTest("verify time check box are displayed ");
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
@@ -177,7 +182,7 @@ public class NewCalenderEventTests extends AbstractTestBase {
 
 
     @Test
-    public void TestCase8() { // passed
+    public void TestCase8() {
         test = report.createTest("verify repeats options");
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
@@ -210,7 +215,7 @@ public class NewCalenderEventTests extends AbstractTestBase {
      * displayed: “Summary: Daily every 1 day”
      */
     @Test
-    public void TestCase9() { // passed
+    public void TestCase9() {
         test = report.createTest("verify repeats options");
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
@@ -242,7 +247,7 @@ public class NewCalenderEventTests extends AbstractTestBase {
      * after 10 occurrences
      */
     @Test
-    public void TestCase10() { // passed
+    public void TestCase10() {
         test = report.createTest("verify repeats options");
         loginPage.login();
         calendarEventsPage.navigateTo("Activities", "Calendar Events");
@@ -283,8 +288,11 @@ public class NewCalenderEventTests extends AbstractTestBase {
         BrowserUtils.wait(10);
         calendarEventsPage.clickOnRepeatCheckBox();
         BrowserUtils.wait(20);
-            calendarEventsPage.selectNow182021();
-          //  Assert.assertFalse();
+            calendarEventsPage.selectDate("Nov","2021","18");
+        String expected="Summary: Daily every 1 day, end by Nov 18, 2021";
+        String actual=calendarEventsPage.getTextFromSummary();
+        Assert.assertEquals(actual,expected);
+        test.pass("test passed");
 
     }
 
@@ -316,11 +324,12 @@ public class NewCalenderEventTests extends AbstractTestBase {
         calendarEventsPage.clickOnRepeatCheckBox();
         BrowserUtils.wait(20);
         calendarEventsPage.selectWeekly();
-        BrowserUtils.wait(10);
+        BrowserUtils.wait(20);
         calendarEventsPage.selectDays("monday", "friday");
         String expected="Summary: Weekly every 1 week on Monday, Friday";
         String actual=calendarEventsPage.getTextFromSummary();
         Assert.assertEquals(actual,expected);
+        test.pass("test passed");
     }
 
 

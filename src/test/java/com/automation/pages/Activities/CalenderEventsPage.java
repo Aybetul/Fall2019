@@ -136,23 +136,28 @@ private  WebElement repeatEveryBtn;
     @FindBy (xpath="//span[text()='Weekly every 1 week on Monday, Friday']")
     private WebElement SummaryText;
 
+
+
     public String getTextFromSummary(){
      return   SummaryText.getText();
     }
 
 
-    public void selectDays(String day1, String day2){
-
-        Select s= new Select(repeatsCheckBox);
-      s.selectByValue(day1);
-      s.selectByValue(day2);
-
+    public WebElement getStartTime(){
+        return startTime;
     }
 
+    public void selectDays(String day1, String day2){
+driver.findElement(By.xpath("//input[@value='"+day1+"']")).click();
+        driver.findElement(By.xpath("//input[@value='"+day2+"']")).click();
+    }
 
+    public void clickTimePM(String h){
+        driver.findElement(By.xpath("//li[text()='"+h+":00 PM']")).click();
+    }
 
     public void selectWeekly(){
-       // repeatsCheckBox.click();
+        repeatsCheckBox.click();
         Select s= new Select(repeatsCheckBox);
         s.selectByVisibleText("Weekly");
 
@@ -160,13 +165,13 @@ private  WebElement repeatEveryBtn;
 
 
 
-public void selectNow182021(){
+public void selectDate(String mouth,String year,String day){
     endDateInput.click();
     Select s=new Select(selectMouth);
-    s.selectByVisibleText("Nov");
+    s.selectByVisibleText(mouth);
     Select n=new Select(selectYear);
-    n.selectByVisibleText("2021");
-    selectDay18.click();
+    n.selectByVisibleText(year);
+driver.findElement(By.xpath("//a[text()='"+day+"']")).click();
 }
 
 
@@ -287,10 +292,7 @@ public boolean isRepeatEveryBtnSelected(){
   BrowserUtils.waitForPageToLoad(20);
 }
 
-
-
-
-    public void clickOnCancel(){
+public void clickOnCancel(){
         BrowserUtils.waitForPageToLoad(20);
         // wait.until(ExpectedConditions.elementToBeClickable(SaveAndCloseArrow)).click();
         cancel.click();
@@ -333,25 +335,28 @@ public boolean verifyTitleDisplayed(){
     }
 //==========================================================
     //H>W5 testcase1
-    public List<String> getDotsValue(){
-        BrowserUtils.waitForPageToLoad(20);
-        Actions actions= new Actions(driver);
-        actions.moveToElement(driver.findElement(By.xpath("//td[text()='Testers meeting']/..//a"))).perform();
-      BrowserUtils.waitForPageToLoad(20);
-        List<String> lst= new ArrayList<>();
-        for (WebElement s : dotsForTestersMeeting) {
-          BrowserUtils.waitForPageToLoad(10);
-      String n=     s.getAttribute("title");
-            lst.add(n);
+//    public List<String> getDotsValue(){
+//        BrowserUtils.waitForPageToLoad(10);
+//        List<String> lst= new ArrayList<>();
+//        for (WebElement s : dotsForTestersMeeting) {
+//          BrowserUtils.waitForPageToLoad(10);
+//      String n=     s.getAttribute("title");
+//            lst.add(n);
+//
+//        }
+//        return lst;
+//    }
 
-        }
-        return lst;
+    public List<WebElement> getDotsList(){
+
+        return dotsForTestersMeeting;
     }
 
+    public WebElement getDot(){
+        return  driver.findElement(By.xpath("//td[.=\"Testers meeting\"]/..//div//a"));
+}
 
-
-
-    public void enterCalendarEventTitle(String titleValue) {
+public void enterCalendarEventTitle(String titleValue) {
         BrowserUtils.waitForPageToLoad(20);
         wait.until(ExpectedConditions.visibilityOf(title)).sendKeys(titleValue);
     }
