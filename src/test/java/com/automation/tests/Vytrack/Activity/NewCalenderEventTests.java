@@ -1,18 +1,13 @@
 package com.automation.tests.Vytrack.Activity;
-
-import com.automation.pages.AbstractPageBase;
 import com.automation.pages.Activities.CalenderEventsPage;
 import com.automation.pages.LoginPage;
 import com.automation.tests.Vytrack.AbstractTestBase;
 import com.automation.utulities.BrowserUtils;
 import com.automation.utulities.DateTimeUtilities;
-import com.automation.utulities.Driver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import java.util.Arrays;
 import java.util.List;
 

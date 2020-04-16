@@ -1,21 +1,17 @@
 package com.automation.pages.Activities;
-
 import com.automation.pages.AbstractPageBase;
-import com.automation.tests.day6.Xpath;
 import com.automation.utulities.BrowserUtils;
-
 import com.automation.utulities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class CalenderEventsPage extends AbstractPageBase {
@@ -27,7 +23,6 @@ public class CalenderEventsPage extends AbstractPageBase {
 
     @FindBy(xpath= "(//a[contains(text(),'Create Calendar event')])[3]")
     private WebElement createCalendarEvent2;
-
 
     @FindBy(className = "select2-chosen")
    private WebElement owner;
@@ -43,8 +38,6 @@ public class CalenderEventsPage extends AbstractPageBase {
 
     @FindBy(xpath = "(//input[@placeholder='time'])[2]")
     private WebElement endTimeInput;
-
-
 
     @FindBy(css = "[id^='time_selector_oro_calendar_event_form_start']")
     private WebElement startTime;
@@ -163,9 +156,7 @@ driver.findElement(By.xpath("//input[@value='"+day1+"']")).click();
 
     }
 
-
-
-public void selectDate(String mouth,String year,String day){
+    public void selectDate(String mouth,String year,String day){
     endDateInput.click();
     Select s=new Select(selectMouth);
     s.selectByVisibleText(mouth);
@@ -208,10 +199,7 @@ public boolean isRepeatEveryBtnSelected(){
         return repeatEveryBtn.isSelected();
 }
 
-
-
-
-    public String getFirstOptionRepeatsCheckBox(){
+public String getFirstOptionRepeatsCheckBox(){
         Select s= new Select(repeatsCheckBox);
      String n =  s.getFirstSelectedOption().getText();
       return n;
@@ -222,8 +210,6 @@ public boolean isRepeatEveryBtnSelected(){
       List<  String >n = BrowserUtils.TextFromWebElement( s.getOptions());
         return n;
     }
-
-
 
     public void clickOnRepeatCheckBox(){
         BrowserUtils.waitForPageToLoad(20);
@@ -247,13 +233,6 @@ public boolean isRepeatEveryBtnSelected(){
         return endTimeInput.isDisplayed();
     }
 
-
-
-
-
-
-
-
     public boolean startDateIsdisplayed(){
         BrowserUtils.wait(10);
         return startDateInput.isDisplayed();
@@ -263,11 +242,6 @@ public boolean isRepeatEveryBtnSelected(){
         BrowserUtils.wait(10);
         return endDateInput.isDisplayed();
     }
-
-
-
-
-
 
     public void clickOnAllDayEventCheckBox(){
         BrowserUtils.waitForPageToLoad(20);
@@ -281,8 +255,6 @@ public boolean isRepeatEveryBtnSelected(){
      return   allDayEventCheckBox.isSelected();
 
     }
-
-
 
     public void selectValueForStartTime(){
     BrowserUtils.waitForPageToLoad(20);
@@ -334,18 +306,6 @@ public boolean verifyTitleDisplayed(){
         gridBtn.click();
     }
 //==========================================================
-    //H>W5 testcase1
-//    public List<String> getDotsValue(){
-//        BrowserUtils.waitForPageToLoad(10);
-//        List<String> lst= new ArrayList<>();
-//        for (WebElement s : dotsForTestersMeeting) {
-//          BrowserUtils.waitForPageToLoad(10);
-//      String n=     s.getAttribute("title");
-//            lst.add(n);
-//
-//        }
-//        return lst;
-//    }
 
     public List<WebElement> getDotsList(){
 
@@ -400,15 +360,7 @@ public void enterCalendarEventTitle(String titleValue) {
        return owner.getText().trim();
    }
 
-//    public void clickToCreateCalendarEvent() {
-//     //  BrowserUtils.wait(5);
-//        BrowserUtils.waitForPageToLoad(20);
-//        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[title='Create Calendar event']")));
-//        wait.until(ExpectedConditions.elementToBeClickable(createCalendarEvent)).click();
-//       // createCalendarEvent.click();
-//     //  BrowserUtils.clickWithJS(createCalendarEvent);
-//        BrowserUtils.waitForPageToLoad(20);
-//    }
+
     public String getStartedDate(){
        BrowserUtils.waitForPageToLoad(10);
        wait.until(ExpectedConditions.visibilityOf(startDate));
